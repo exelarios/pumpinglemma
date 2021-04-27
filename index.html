@@ -124,22 +124,22 @@
             </center>
 
             ```java
-            class Foo {
+            class Fo {
                 int a;
             }
 
             class Bar {
-                Foo b;
+                Fo b;
             }
             ```
             
             $ u \to \epsilon $
 
-            $ x \to $ class Fo(o)$ ^K $ { }
+            $ x \to $ class F(o)$ ^K $ { }
 
             $ y \to $ class Bar {
 
-            $ z \to $ fo(o)$ ^K $ b$^K$;
+            $ z \to $ F(o)$ ^K $ b$^K$;
 
             $ v \to $ }
 
@@ -167,8 +167,6 @@
             i = 2, K = 2  
             $ w = u \cdot x^2 \cdot y \cdot z^2 \cdot v $
 
-            $ |x y z| < K $
-
             ```java
             class Foo {
                 int a;
@@ -184,7 +182,14 @@
             }
             ```
 
-            This does't work because $ |xyz| \geq K $, therefore context-free languages can't store all names arbitrarily.
+            Since,   
+            $ x \to $ class F(o)$^K$  
+            $ y \to $ class Bar {   
+            $ z \to $ F(o)$^K$ b$^K$
+            
+
+            This doesn't work because classes names can be arbitrarily long that would exceed K.
+            Therefore, $ |xyz| \geq K $
 
             ---
             # Contradiction
