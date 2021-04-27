@@ -80,12 +80,6 @@
                 - Can be int, void or any class that declared in the program.
 
             ---
-            # Parse Tree
-            <center>
-                <img src="./Trees.svg" width="500">
-            </center>
-
-            ---
 
             # Approaching the Problem
             - We're going to assume that Java Declaration $ L $ is context-free language.
@@ -112,8 +106,6 @@
                 - "You need a word with length at least K, but it could also be a much longer word, e.g. 
                   one that declares K classes, each of which has a different name, which may grow arbitrarily long, 
                   and another class that has an attribute of each of those types."
-            - How are we going to split this word into 5 parts?
-                - More importantly, what should $ x $ and $ z $?
 
             <center>
                 <h2> 
@@ -139,73 +131,55 @@
                 </h2>
             </center>
 
+            - It's impossible to decide what's $ xyz $, where $ |xyz| \lt K $ .
+            - Since $ |xyz| < K $, and K can be any integer
+            - If we try to pump class `F1`, class Bar F1 will be greater $ K $ characters away.
+            - Thus, breaking the pumping lemma.
+
             ```java
-            class Fo {
-                int a;
-            }
+            class F1 { }
+
+            class F2 { }
+
+            ...
+
+            class FK { }
 
             class Bar {
-                Fo b;
+                F1 f1;
+                F2 f2;
+                ...
+                FK fk;
             }
             ```
-            
-            $ u \to \epsilon $
-
-            $ x \to $ class F(o)$ ^i $ { }
-
-            $ y \to $ class Bar {
-
-            $ z \to $ F(o)$ ^i $ b$^i $;
-
-            $ v \to $ }
-
             ---
 
-            # Let's Pump
+            # Let's Try to Pump
 
-            i = 1, K = 2  
-            $ w = u \cdot x \cdot y \cdot z \cdot v $
-
-            ```java
-            class Fo {
-                int a;
-            }
-
-            class Bar {
-                Fo b;
-            }
-            ```
-
-            ---
-
-            # Let's Pump
-
-            i = 2, K = 2  
-            $ w = u \cdot x^2 \cdot y \cdot z^2 \cdot v $
+            i = 1  
+            $ w = u \cdot x^i \cdot y \cdot z^i \cdot v $
 
             ```java
-            class Fo {
-                int a;
-            }
+            class F1 { }
 
-            class Foo {
-                int a;
-            }
+            class F2 { }
+
+            ...
+
+            class FK { }
 
             class Bar {
-                Fo b;
-                Foo bb;
+                F1 f1;
+                F2 f2;
+                ...
+                FK fk;
             }
             ```
 
-            Since,   
-            $ x \to $ class F(o)$^i $  
-            $ y \to $ class Bar {   
-            $ z \to $ F(o)$^i $ b$^i $
-            
-            $ | xyz | \geq K $, therefore in a context-free language can't "store" classes names since it can arbitrarily longer than K.
+            - Regardless of where our $ x $ is, will never reach our corresponding attribute in class bar.
 
             ---
+
             # Contradiction
             - We assumed that Java Declaration was a context-free language.
             - We discover that the pumping lemma doesn't hold for this language.
