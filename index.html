@@ -44,10 +44,20 @@
             $ A \to xAz $  
             $ A \to y $ 
 
-            <center>
-                <img style="margin-bottom: 4.9rem;" src="./uyu.png" width="300px" draggable="false">
-                <img src="./uxxyzz.png" width="300px" draggable="false">
-            </center>
+            <div style="display: flex; justify-content: center;">
+                <div>
+                    <div>
+                        uxyz  
+                    </div>
+                    <img style="margin-bottom: 4.9rem;" src="./uyu.png" width="300px" draggable="false">
+                </div>
+                <div>
+                    <div>
+                        uxxyzzv
+                    </div>
+                    <img src="./uxxyzz.png" width="300px" draggable="false">
+                </div>
+            </div>
 
             ---
 
@@ -68,6 +78,12 @@
             - There's no methods, packages, imports, access control or anything else; just these class delarations.
             - Only programs consisting of delcaration where each attribute and methods parameter has a valid type are valid words in this language.
                 - Can be int, void or any class that declared in the program.
+
+            ---
+            # Parse Tree
+            <center>
+                <img src="./Trees.svg" width="500">
+            </center>
 
             ---
 
@@ -96,7 +112,7 @@
                 - "You need a word with length at least K, but it could also be a much longer word, e.g. 
                   one that declares K classes, each of which has a different name, which may grow arbitrarily long, 
                   and another class that has an attribute of each of those types."
-            - How are we going to split this program into 5 parts?
+            - How are we going to split this word into 5 parts?
                 - More importantly, what should $ x $ and $ z $?
 
             <center>
@@ -119,7 +135,7 @@
             # Splitting
             <center>
                 <h2> 
-                    $ w = u \cdot x^K \cdot y \cdot z^K \cdot v $
+                    $ w = u \cdot x^i \cdot y \cdot z^i \cdot v $
                 </h2>
             </center>
 
@@ -135,11 +151,11 @@
             
             $ u \to \epsilon $
 
-            $ x \to $ class F(o)$ ^K $ { }
+            $ x \to $ class F(o)$ ^i $ { }
 
             $ y \to $ class Bar {
 
-            $ z \to $ F(o)$ ^K $ b$^K$;
+            $ z \to $ F(o)$ ^i $ b$^i $;
 
             $ v \to $ }
 
@@ -147,16 +163,16 @@
 
             # Let's Pump
 
-            i = 1, K = 1  
+            i = 1, K = 2  
             $ w = u \cdot x \cdot y \cdot z \cdot v $
 
             ```java
-            class Foo {
+            class Fo {
                 int a;
             }
 
             class Bar {
-                Foo b;
+                Fo b;
             }
             ```
 
@@ -168,26 +184,26 @@
             $ w = u \cdot x^2 \cdot y \cdot z^2 \cdot v $
 
             ```java
+            class Fo {
+                int a;
+            }
+
             class Foo {
                 int a;
             }
 
-            class Fooo {
-                int a;
-            }
-
             class Bar {
-                Foo b;
-                Fooo bb;
+                Fo b;
+                Foo bb;
             }
             ```
 
             Since,   
-            $ x \to $ class F(o)$^K$  
+            $ x \to $ class F(o)$^i $  
             $ y \to $ class Bar {   
-            $ z \to $ F(o)$^K$ b$^K$
+            $ z \to $ F(o)$^i $ b$^i $
             
-            $ | xyz | \geq K $, therefore classes can be arbitrarily long that exceeds K.
+            $ | xyz | \geq K $, therefore in a context-free language can't "store" classes names since it can arbitrarily longer than K.
 
             ---
             # Contradiction
